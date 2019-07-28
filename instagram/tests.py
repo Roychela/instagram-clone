@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Image
+from .models import Image,Profile
 from django.contrib.auth.models import User
 # Create your tests here.
 class ImageTestClass(TestCase):
@@ -15,9 +15,23 @@ class ImageTestClass(TestCase):
 
     def tearDown(self):
         Image.objects.all().delete()
+        Profile.objects.all().delete()
+        User.objects.all().delete()
 
         
     def test_save_image(self):
         self.image_ferrari.save_image()
         images = Image.objects.all()
         self.assertTrue(len(images)>0)
+class ProfileTestClass(TestCase):
+    '''
+    test class for Profile model
+    '''
+    def setUp(self):
+        self.user = User.objects.create_user("testuser", "secret")
+        self.profile_test = Profile(image='image.png',user=self.user)
+        self.profile_test.save()
+
+    def test_instance_true(self):
+        self.profile_test.save()
+        self.assertTrue(isinstance(self.profile_test, Profile))
