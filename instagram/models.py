@@ -15,6 +15,8 @@ class Image(models.Model):
 
     def save_image(self):
         self.save()
+    def delete_image(self):
+        self.delete()
 
     def __str__(self):
         return self.image_name
@@ -39,3 +41,22 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+
+class Comments(models.Model):
+    comment = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def save_comment(self):
+        self.save()
+    def delete_comment(self):
+        self.delete()
+    def __str__(self):
+        return str(self.comment)
+    
+    @classmethod
+    def get_comments_by_images(cls, id):
+        comments = Comments.objects.filter(image__pk = id)
+        return comments

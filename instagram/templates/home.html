@@ -11,7 +11,22 @@
             <img class="img-fluid" src="{{ image.image.url }}">
             <h2><a class="article-title" href="#">{{ image.image_name }}</a></h2>
             <p class="article-content">{{ image.image_caption }}</p>
+
+            <a href=" {% url 'comment' image_id=image.id %}">
+                 
+              <i class="far fa-comment"></i></a>
+          
+               
+                    {% for comment in comments %}
+                    {% if comment.image_id == image.id%}
+                    <h5><strong>{{comment.commenter}}</strong> {{comment.comment}}</h5>
+                    <hr>
+
+                    {% endif %}
+                    {% endfor %}
+                                 
           </div>
+
         </article>
     {% endfor %}
 {% endblock content %}
