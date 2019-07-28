@@ -10,5 +10,8 @@ class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'images/', blank = True)
 
+    def save_image(self):
+        self.save()
+
     def __str__(self):
         return self.image_name
