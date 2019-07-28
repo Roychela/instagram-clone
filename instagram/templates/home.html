@@ -4,9 +4,11 @@
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ image.user }}</a>
+             <img class="rounded-circle account-img" src="{{ image.user.profile.image.url }}"  height='10' width='15'>
+              <a class="mr-2" href="/accounts/profile">{{ image.user }}</a>
               <small class="text-muted">{{ image.date_posted|date:"F d, Y" }}</small>
             </div>
+            <img class="img-fluid" src="{{ image.image.url }}">
             <h2><a class="article-title" href="#">{{ image.image_name }}</a></h2>
             <p class="article-content">{{ image.image_caption }}</p>
           </div>

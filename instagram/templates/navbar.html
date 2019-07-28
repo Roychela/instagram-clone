@@ -1,7 +1,8 @@
-<nav class="navbar navbar-inverse navbar-light bg-light default-color">
+<nav class="navbar navbar-inverse navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Instagram</a>
+      <a class="navbar-brand" href="#">
+          <i class="fab fa-instagram"></i> Instagram</a>
     </div>
      <!-- Adding a search form  -->
       <div class="col-sm-4 col-md-4 navbar-right">
@@ -22,16 +23,17 @@
        <div class="col-sm-6 col-md-6">
             {% if user.is_authenticated %}
             <ul>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+              <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle " id="navbarDropdownMenuLink-333" data-toggle="dropdown"  aria-expanded="false">
                           <span class="caret"></span>
+                          <i class="fas fa-user"></i>Account
                       </a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <a href="{%url 'blog-home'%}">Home</a>
                   </li>
                    <li>
-                    <a href="#">Post Picture</a>
+                    <a href="{% url 'upload_image' %}">Post Picture</a>
                   </li>
                   <li>
                     <a href="/accounts/password/change">Change Password</a>
@@ -43,15 +45,22 @@
                     <a href="/logout">Logout</a>
                   </li>
                 </ul>
-              </li>
+              </div>
             </ul>
             {% else %}
-            <li>
-              <a class='btn btn-default' href="/accounts/login">Login</a>
-            </li>
-            <li>
-              <a class='btn btn-default' href="/accounts/register">Register</a>
-            </li>
+
+            <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class='btn btn-default' href="/accounts/login">Login</a>
+          <a class='btn btn-default' href="/accounts/register">Register</a>
+          
+        </div>
+      </div>
 
             {% endif %}
           </div>
