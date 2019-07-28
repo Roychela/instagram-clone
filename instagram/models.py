@@ -11,4 +11,4 @@ class Image(models.Model):
     image = models.ImageField(upload_to = 'images/', blank = True)
 
     def __str__(self):
-        return self.title
+        return self.image_name
