@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Image
+from .models import Image, Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import  ProfileUpdateForm
@@ -37,4 +37,17 @@ def profile(request):
     }
 
     return render(request, 'profile.html', context)
-    
+
+
+def search_results(request):
+
+    if 'profile' in request.GET and request.GET["profile"]:
+        search_term = request.GET.get("profile")
+        searched_profile = Profile.search_profile(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"profiles": searched_profile})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
