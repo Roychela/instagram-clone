@@ -1,21 +1,59 @@
-<header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Instagram</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-    
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              <a class="nav-item nav-link" href="#">Login</a>
-              <a class="nav-item nav-link" href="#">Register</a>
+<nav class="navbar navbar-inverse navbar-light bg-light default-color">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Instagram</a>
+    </div>
+     <!-- Adding a search form  -->
+      <div class="col-sm-4 col-md-4 navbar-right">
+
+        <form class="navbar-form" role="search" action="#">
+
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="article">
+            <div class="input-group-btn">
+              <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
             </div>
           </div>
-        </div>
-      </nav>
-    </header>
+
+        </form>
+
+      </div>
+      <!-- search form end -->
+       <div class="col-sm-6 col-md-6">
+            {% if user.is_authenticated %}
+            <ul>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                          <span class="caret"></span>
+                      </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="{%url 'blog-home'%}">Home</a>
+                  </li>
+                   <li>
+                    <a href="#">Post Picture</a>
+                  </li>
+                  <li>
+                    <a href="/accounts/password/change">Change Password</a>
+                  </li>
+                   <li>
+                    <a href="/accounts/profile">Profile</a>
+                  </li>
+                  <li>
+                    <a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <li>
+              <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+            <li>
+              <a class='btn btn-default' href="/accounts/register">Register</a>
+            </li>
+
+            {% endif %}
+          </div>
+  </div>
+</nav>

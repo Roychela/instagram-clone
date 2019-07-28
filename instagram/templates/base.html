@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">
 
     {% if title %}
         <title>Django Blog - {{ title }}</title>
@@ -19,10 +21,11 @@
     {% endif %}
 </head>
 <body>
-    {% include "navbar.html" %}
+   {% include "navbar.html" %}
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
+         
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
