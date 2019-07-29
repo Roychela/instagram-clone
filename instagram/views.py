@@ -1,14 +1,15 @@
-from django.shortcuts import render, redirect
-from .models import Image, Profile, Comments
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Image, Profile, Comments, Follow
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import  ProfileUpdateForm, ImageForm, CommentForm
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 # Create your views here.
 
 
 
-
+@login_required(login_url='/accounts/login/')
 def home(request):
     context = {
         'images': Image.objects.all(),
@@ -94,3 +95,32 @@ def comment(request,image_id):
         form = CommentForm()
 
     return render(request, 'comments.html', locals())
+
+@login_required(login_url='/accounts/login/')
+def user_profile(request, id):
+    user=User.objects.filter(id=id).first()
+    profile = user.profile
+    profile_details = Profile.get_profile_id(id)
+    images = Image.get_profile_images(id)
+    return render(request,'profile.html',locals())
+@login_required(login_url='/accounts/login/')
+def like(request, image_id):
+    image = get_object_or_404(Image, pk=image_id)
+    request.user.profile.like(image)
+    return JsonResponse(image.total_likes, safe=False)
+
+@login_required(login_url='/accounts/login/')
+def unlike(request, image_id):
+    image = get_object_or_404(Image, pk=image_id)
+    request.user.profile.unlike(image)
+    return JsonResponse(image.total_likes, safe=False)
+
+
+def follow(request, following_id):
+    current_user = request.user
+    trial = User.objects.get(username=current_user).pk
+    if request.method == 'POST':
+        trial_id = current_user.id
+        new_follower = Follow.objects.create(user_id=trial, following_id=following_id)
+    return redirect(home)
+

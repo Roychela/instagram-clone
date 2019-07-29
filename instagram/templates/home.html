@@ -5,7 +5,7 @@
           <div class="media-body">
             <div class="article-metadata">
              <img class="rounded-circle account-img" src="{{ image.user.profile.image.url }}"  height='10' width='15'>
-              <a class="mr-2" href="/accounts/profile">{{ image.user }}</a>
+              <a class="mr-2" href="{% url 'showprofile' id=image.user.profile.id %}">{{ image.user }}</a>
               <small class="text-muted">{{ image.date_posted|date:"F d, Y" }}</small>
             </div>
             <img class="img-fluid" src="{{ image.image.url }}">
@@ -14,12 +14,13 @@
 
             <a href=" {% url 'comment' image_id=image.id %}">
                  
-              <i class="far fa-comment"></i></a>
-          
-               
+              <i class="far fa-comment">Add a comment...</i></a>
+          <a href="">
+              <i class="far fa-heart"></i></a>
+               <hr>
                     {% for comment in comments %}
                     {% if comment.image_id == image.id%}
-                    <h5><strong>{{comment.commenter}}</strong> {{comment.comment}}</h5>
+                    <h6><strong>{{comment.commenter}}</strong> {{comment.comment}}</h6>
                     <hr>
 
                     {% endif %}

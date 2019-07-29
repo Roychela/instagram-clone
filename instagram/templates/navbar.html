@@ -28,6 +28,11 @@
                           <span class="caret"></span>
                           <i class="fas fa-user"></i>Account
                       </a>
+                     
+                
+                  
+                  
+                   
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <a href="{%url 'blog-home'%}">Home</a>
@@ -35,11 +40,14 @@
                    <li>
                     <a href="{% url 'upload_image' %}">Post Picture</a>
                   </li>
+                   <li>
+                    <a href="{% url 'showprofile' id=user.profile.id %}">Profile</a>
+                  </li>
                   <li>
                     <a href="/accounts/password/change">Change Password</a>
                   </li>
                    <li>
-                    <a href="/accounts/profile">Profile</a>
+                    <a href="/accounts/profile">Edit Profile</a>
                   </li>
                   <li>
                     <a href="/logout">Logout</a>

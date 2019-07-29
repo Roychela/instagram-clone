@@ -21,7 +21,7 @@
               <img src="{{profile.image.url}}" width="152" height="152" class="rounded-circle border">
               
             </div>
-            <h2><a class="article-title" href="#">{{profile.user.username}}</a></h2>
+            <h2><a class="article-title" href="{% url 'showprofile' id=profile.id %}">{{profile.user.username}}</a></h2>
            
           </div>
         </article>
