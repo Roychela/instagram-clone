@@ -86,7 +86,7 @@ Open [localhost:8000](http://127.0.0.1:8000/)
 
 
 ## LIVE SITE
-Click [Live site]() to view the deployed application
+Click [Live site](https://roy1instagram.herokuapp.com) to view the deployed application
 ## KNOWN BUGS
 
 
@@ -98,4 +98,4 @@ Click [Live site]() to view the deployed application
 * Scss
 
 ## LICENSE
-[MIT]()
+[MIT](https://github.com/Roychela/instagram-clone/blob/master/LICENSE)
